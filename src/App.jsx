@@ -1,13 +1,19 @@
-import { useState } from 'react'
-import HelloWorld from './examples/HelloWorld'
-import Counter from './examples/Counter'
-import Types from './examples/Types'
-import Routing from './examples/Routing'
+import { useState } from "react";
+import Navbar from "./components/Navbar";
+import HomePage from "./components/Homepage";
 
 function App() {
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [todos, setTodos] = useState([]);
+
   return (
-    <Routing />
-  )
+    <div>
+      <Navbar openAddTodoModal={() => setModalVisible(true)} />
+      <div className="main-container">
+        <HomePage {...{isModalVisible, setModalVisible, todos, setTodos}}/>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
