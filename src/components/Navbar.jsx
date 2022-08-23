@@ -7,7 +7,7 @@ function Navbar({ openAddTodoModal }) {
           <button
             type="button"
             className="btn btn-primary me-3"
-            style={{ height: 35 }}
+            style={{ height: 35, borderRadius: 5 }}
             onClick={openAddTodoModal}
           >
             Add todo
