@@ -1,19 +1,35 @@
 import { useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { HIDE_TODO_MODAL, TODO_ADD } from "../../actions/types";
+import { uuid } from "../../utils";
 import "./modal.css";
 
-function AddTodoModal({ visible, setVisible, addTodo }) {
-  if (!visible) {
-    return <></>;
-  }
-
+function AddTodoModal() {
+  const isModalVisible = useSelector((state) => state.todo.todoModalVisible);
+  const dispatch = useDispatch();
   const titleRef = useRef(null);
   const descRef = useRef(null);
+
+  if (!isModalVisible) {
+    return <></>;
+  }
 
   const saveTodo = () => {
     const title = titleRef.current.value;
     const description = descRef.current.value;
-    addTodo(title, description);
-    setVisible(false);
+    const ident = uuid();
+    const date = new Date();
+    dispatch({
+      type: TODO_ADD,
+      payload: {
+        title,
+        description,
+        date_created: date.toJSON(),
+        ident,
+        done: false,
+      },
+    });
+    dispatch({ type: HIDE_TODO_MODAL });
   };
 
   return (
@@ -28,7 +44,7 @@ function AddTodoModal({ visible, setVisible, addTodo }) {
                 className="btn-close"
                 data-mdb-dismiss="modal"
                 aria-label="Close"
-                onClick={() => setVisible(false)}
+                onClick={() => dispatch({ type: HIDE_TODO_MODAL })}
               ></button>
             </div>
             <div className="modal-body">
@@ -56,7 +72,11 @@ function AddTodoModal({ visible, setVisible, addTodo }) {
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary" onClick={saveTodo}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={saveTodo}
+              >
                 Save changes
               </button>
             </div>

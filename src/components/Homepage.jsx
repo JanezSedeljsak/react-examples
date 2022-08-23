@@ -1,18 +1,11 @@
 import { useState } from "react";
 import Card from "./Card";
 import AddTodoModal from "./modals/AddTodoModal";
+import { useSelector } from "react-redux";
 
-function HomePage({ isModalVisible, setModalVisible, todos, setTodos }) {
-  const addTodo = (title, description) => {
-    setTodos([
-      ...todos,
-      {
-        title,
-        description,
-        date_created: new Date(),
-      },
-    ]);
-  };
+function HomePage() {
+  const todos = useSelector((state) => state.todo.todoData);
+  console.log(todos);
 
   return (
     <>
@@ -21,11 +14,7 @@ function HomePage({ isModalVisible, setModalVisible, todos, setTodos }) {
           <Card key={index} {...todo} />
         ))}
       </div>
-      <AddTodoModal
-        visible={isModalVisible}
-        setVisible={setModalVisible}
-        addTodo={addTodo}
-      />
+      <AddTodoModal />
     </>
   );
 }
