@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import { USER_LOGOUT, USER_REGISTER_START, USER_REGISTER_SUCCESS } from "../actions/types";
 import { useDispatch } from "react-redux";
-import { API_BASE } from '../utils';
+import { API_BASE, BASE } from '../utils';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import "./authform.css";
 
@@ -10,6 +11,7 @@ function Register() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const registerAction = () => {
     const user = {
@@ -23,6 +25,7 @@ function Register() {
       .post(API_BASE + "register", user)
       .then(function (response) {
         dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data });
+        navigate(BASE);
       })
       .catch(function (error) {
         dispatch({ type: USER_LOGOUT });
