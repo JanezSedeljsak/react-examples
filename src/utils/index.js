@@ -5,3 +5,5 @@ export function uuid() {
     });
 }
 
+export const BASE = "/react-examples/";
+
