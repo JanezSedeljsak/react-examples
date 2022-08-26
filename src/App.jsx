@@ -5,10 +5,12 @@ import { BASE } from "./utils";
 
 import Navbar from "./components/Navbar";
 import PublicNavbar from "./components/PublicNavbar";
+import AddTodoModal from "./components/modals/AddTodoModal";
 
 import HomePage from "./pages/Homepage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 const Navigation = ({ isAuth }) => {
   if (!isAuth) {
@@ -29,8 +31,10 @@ function App() {
           <Route path={BASE} element={<HomePage />} />
           <Route path={BASE + "login"} element={<Login />} />
           <Route path={BASE + "register"} element={<Register />} />
+          <Route path={BASE + "profile"} element={<Profile />} />
         </Routes>
       </div>
+      <AddTodoModal />
     </BrowserRouter>
   );
 }

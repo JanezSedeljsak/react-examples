@@ -1,26 +1,32 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
-import AddTodoModal from "../components/modals/AddTodoModal";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
 import { API_BASE } from "../utils";
+import { GET_POSTS_FAILURE, GET_POSTS_START, GET_POSTS_SUCCESS } from "../actions/types";
 
 function HomePage() {
-  const todos = useSelector((state) => state.todo.todoData);
+  const posts = useSelector((state) => state.post.posts);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    axios.get(API_BASE + "users").then(function (response) {
+    dispatch({ type: GET_POSTS_START });
+    axios.get(API_BASE + "posts").then(function (response) {
+      dispatch({ type: GET_POSTS_SUCCESS, payload: response.data.posts });
       console.log(response);
+    }).catch(error => {
+      alert('napaka');
+      dispatch({ type: GET_POSTS_FAILURE });
     })
   }, []);
 
   return (
     <>
       <div className="row">
-        {todos.map((todo, index) => (
-          <Card key={index} {...todo} />
+        {posts.map((post, index) => (
+          <Card key={index} {...post} />
         ))}
       </div>
-      <AddTodoModal />
     </>
   );
 }
