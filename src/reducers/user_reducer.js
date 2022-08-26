@@ -4,7 +4,8 @@ import {
     USER_LOGIN_START,
     USER_LOGIN_SUCCESS,
     USER_LOGIN_FAILURE,
-    USER_LOGOUT
+    USER_LOGOUT,
+    USER_REGISTER_FAILURE
 } from '../actions/types';
 
 const initialState = {
@@ -19,6 +20,8 @@ export default function (state = initialState, action) {
             return { ...initialState, loading: true };
         case USER_REGISTER_SUCCESS:
             return { ...state, loading: false, jwt: action.payload.jwt, user: action.payload.user };
+        case USER_REGISTER_FAILURE:
+            return {...initialState};
         case USER_LOGIN_START:
             return { ...initialState, loading: true };
         case USER_LOGIN_SUCCESS:
