@@ -51,7 +51,9 @@ function Navbar() {
                 <i className="fas fa-search"></i>
               </span>
             </>
-          ) : <></>}
+          ) : (
+            <></>
+          )}
 
           <button
             type="button"
@@ -86,6 +88,17 @@ function Navbar() {
                   }}
                 >
                   Profile
+                </a>
+              </li>
+              <li>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={() => {
+                    navigate(BASE + "dashboard");
+                  }}
+                >
+                  Dashboard
                 </a>
               </li>
               <li>

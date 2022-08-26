@@ -9,7 +9,7 @@ import {
   ADD_POST_START,
   GET_POSTS_START,
   GET_POSTS_SUCCESS,
-  GET_POSTS_FAILURE
+  GET_POSTS_FAILURE,
 } from "../../actions/types";
 import "./modal.css";
 

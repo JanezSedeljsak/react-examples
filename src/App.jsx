@@ -11,6 +11,7 @@ import HomePage from "./pages/Homepage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Dashboard from "./pages/Dashboard";
 
 const Navigation = ({ isAuth }) => {
   if (!isAuth) {
@@ -32,6 +33,7 @@ function App() {
           <Route path={BASE + "login"} element={<Login />} />
           <Route path={BASE + "register"} element={<Register />} />
           <Route path={BASE + "profile"} element={<Profile />} />
+          <Route path={BASE + "dashboard"} element={<Dashboard />} />
         </Routes>
       </div>
       <AddTodoModal />
