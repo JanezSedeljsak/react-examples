@@ -17,16 +17,26 @@ function HomePage() {
 
   useEffect(() => {
     dispatch({ type: GET_POSTS_START });
-    toast("loading posts");
+    toast("Loading posts...", {
+      autoClose: 500,
+    });
     axios
       .get(API_BASE + "posts")
       .then(function (response) {
         dispatch({ type: GET_POSTS_SUCCESS, payload: response.data.posts });
-        console.log(response);
+        toast.success("🦄 Posts loaded successfully.!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .catch((error) => {
-        alert("napaka");
         dispatch({ type: GET_POSTS_FAILURE });
+        toast("Error!");
       });
   }, []);
 
