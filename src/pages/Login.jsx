@@ -35,12 +35,17 @@ function Login() {
             autoClose: 2000,
           });
         } else {
-          alert(response.data.msg);
+          toast.error("Login failed", {
+            autoClose: 2000,
+          });
           dispatch({ type: USER_LOGIN_FAILURE });
         }
       })
       .catch(function (error) {
         dispatch({ type: USER_LOGIN_FAILURE });
+        toast.error("Login failed", {
+          autoClose: 2000,
+        });
       });
   };
 
@@ -76,6 +81,7 @@ function Login() {
           Login
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 }
