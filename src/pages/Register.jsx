@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { USER_LOGOUT, USER_REGISTER_START, USER_REGISTER_SUCCESS } from "../actions/types";
+import { USER_LOGOUT, USER_REGISTER_START, USER_REGISTER_SUCCESS, USER_REGISTER_FAILURE } from "../actions/types";
 import { useDispatch } from "react-redux";
 import { API_BASE, BASE } from '../utils';
 import { useNavigate } from "react-router-dom";
@@ -24,8 +24,13 @@ function Register() {
     axios
       .post(API_BASE + "register", user)
       .then(function (response) {
-        dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data });
-        navigate(BASE);
+        if(response.data.success) {
+          dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data });
+          navigate(BASE);
+        } else {
+          alert('uporabnik ze obstaja');
+          dispatch({ tyle: USER_REGISTER_FAILURE })
+        }
       })
       .catch(function (error) {
         dispatch({ type: USER_LOGOUT });
