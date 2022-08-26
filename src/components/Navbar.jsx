@@ -97,6 +97,17 @@ function Navbar() {
                   className="dropdown-item"
                   href="#"
                   onClick={() => {
+                    navigate(BASE + "dashboard");
+                  }}
+                >
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={() => {
                     dispatch({ type: USER_LOGOUT });
                     navigate(BASE);
                     toast.success("Logged out!", {
