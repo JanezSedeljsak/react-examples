@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { API_BASE, BASE } from "../utils";
 import "./authform.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const emailRef = useRef(null);
@@ -29,6 +31,9 @@ function Login() {
         if (response.data.success) {
           dispatch({ type: USER_LOGIN_SUCCESS, payload: response.data });
           navigate(BASE);
+          toast.success("Logged in!", {
+            autoClose: 2000,
+          });
         } else {
           alert(response.data.msg);
           dispatch({ type: USER_LOGIN_FAILURE });
