@@ -123,7 +123,7 @@ function AddTodoModal() {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Modal title</h5>
+              <h5 className="modal-title">Create Post Modal</h5>
               <button
                 type="button"
                 className="btn-close"
@@ -159,12 +159,12 @@ function AddTodoModal() {
                 <button
                   type="button"
                   className="btn btn-primary me-3"
-                  style={{ height: 35, borderRadius: 5 }}
+                  style={{ height: 35, borderRadius: 5, marginBottom: 10 }}
                   onClick={uploadImage}
                 >
                   Upload image
                 </button>
-                <img src={image} style={{ width: "100%" }} />
+                <img src={image} style={{ width: "100%", borderRadius: 5 }} />
               </div>
             </div>
             <div className="modal-footer">
@@ -173,7 +173,7 @@ function AddTodoModal() {
                 className="btn btn-primary"
                 onClick={saveTodo}
               >
-                Save changes
+                Create blog
               </button>
             </div>
           </div>
