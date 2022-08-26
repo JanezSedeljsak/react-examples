@@ -6,5 +6,5 @@ export function uuid() {
 }
 
 export const BASE = "/react-examples/";
-export const API_BASE = "http://localhost:5000/api/v1/";
+export const API_BASE = "http://localhost:5002/api/v1/";
 
