@@ -39,8 +39,15 @@ function Profile() {
       {profileData?.profile ? (
         <div className="card" style={{ marginBottom: 15 }}>
           <ul className="list-group list-group-light">
-            <li className="list-group-item px-3">Name: <b>{profileData.profile.name}</b></li>
-            <li className="list-group-item px-3">Email: <b>{profileData.profile.email}</b></li>
+            <li className="list-group-item px-3">
+              Name: <b>{profileData.profile.name}</b>
+            </li>
+            <li className="list-group-item px-3">
+              Email: <b>{profileData.profile.email}</b>
+            </li>
+            <li className="list-group-item px-3">
+              You have <b>{profileData.posts.length} </b>posts!
+            </li>
           </ul>
         </div>
       ) : null}
