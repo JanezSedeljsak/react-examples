@@ -99,7 +99,9 @@ function Navbar() {
                   onClick={() => {
                     dispatch({ type: USER_LOGOUT });
                     navigate(BASE);
-                    toast.success("Logged out!");
+                    toast.success("Logged out!", {
+                      autoClose: 2000,
+                    });
                   }}
                 >
                   Logout

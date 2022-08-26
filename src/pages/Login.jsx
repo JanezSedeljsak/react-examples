@@ -31,7 +31,9 @@ function Login() {
         if (response.data.success) {
           dispatch({ type: USER_LOGIN_SUCCESS, payload: response.data });
           navigate(BASE);
-          toast.success("Logged in!");
+          toast.success("Logged in!", {
+            autoClose: 2000,
+          });
         } else {
           alert(response.data.msg);
           dispatch({ type: USER_LOGIN_FAILURE });
