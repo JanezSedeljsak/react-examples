@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BASE } from "../utils";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
   const location = useLocation();
@@ -51,7 +53,9 @@ function Navbar() {
                 <i className="fas fa-search"></i>
               </span>
             </>
-          ) : <></>}
+          ) : (
+            <></>
+          )}
 
           <button
             type="button"
@@ -95,6 +99,9 @@ function Navbar() {
                   onClick={() => {
                     dispatch({ type: USER_LOGOUT });
                     navigate(BASE);
+                    toast.success("Logged out!", {
+                      autoClose: 2000,
+                    });
                   }}
                 >
                   Logout

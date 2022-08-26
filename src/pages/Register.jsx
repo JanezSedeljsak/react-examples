@@ -1,10 +1,12 @@
 import { useRef } from "react";
 import { USER_LOGOUT, USER_REGISTER_START, USER_REGISTER_SUCCESS, USER_REGISTER_FAILURE } from "../actions/types";
 import { useDispatch } from "react-redux";
-import { API_BASE, BASE } from '../utils';
+import { API_BASE, BASE } from "../utils";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import "./authform.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Register() {
   const nameRef = useRef(null);
@@ -27,6 +29,7 @@ function Register() {
         if(response.data.success) {
           dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data });
           navigate(BASE);
+          toast.success("Successfully registered!");
         } else {
           alert('uporabnik ze obstaja');
           dispatch({ tyle: USER_REGISTER_FAILURE })

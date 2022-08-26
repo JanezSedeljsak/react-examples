@@ -9,9 +9,11 @@ import {
   ADD_POST_START,
   GET_POSTS_START,
   GET_POSTS_SUCCESS,
-  GET_POSTS_FAILURE
+  GET_POSTS_FAILURE,
 } from "../../actions/types";
 import "./modal.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddTodoModal() {
   const isModalVisible = useSelector((state) => state.post.todoModalVisible);
@@ -77,15 +79,39 @@ function AddTodoModal() {
           .get(API_BASE + "posts")
           .then(function (response) {
             dispatch({ type: GET_POSTS_SUCCESS, payload: response.data.posts });
-            console.log(response);
+            toast.success("Created post successfully!", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           })
           .catch((error) => {
-            alert("napaka");
+            toast("Error!", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
             dispatch({ type: GET_POSTS_FAILURE });
           });
       })
       .catch(function (error) {
-        alert("napaka");
+        toast.error("Error!!!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         dispatch({ type: ADD_POST_FAILURE });
         dispatch({ type: HIDE_POST_MODAL });
       });
@@ -153,6 +179,7 @@ function AddTodoModal() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
