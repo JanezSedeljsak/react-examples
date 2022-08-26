@@ -65,7 +65,7 @@ function Navbar() {
             <button
               className="btn btn-primary dropdown-toggle"
               type="button"
-              style={{ height: 35, borderRadius: 5 }}
+              style={{ height: 35, borderRadius: 5}}
               id="dropdownExampleAnimation"
               data-mdb-toggle="dropdown"
               aria-expanded="false"
