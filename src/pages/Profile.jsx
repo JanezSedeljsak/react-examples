@@ -54,7 +54,7 @@ function Profile() {
 
       <div className="row">
         {profileData?.posts?.map((post) => (
-          <Card key={post.id} {...post} />
+          <Card key={post.id} {...post} isDelete={true}/>
         ))}
       </div>
     </>

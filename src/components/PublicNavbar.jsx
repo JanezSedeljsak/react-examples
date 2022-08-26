@@ -20,14 +20,17 @@ function PublicNavbar() {
 
   return (
     <nav className="navbar navbar-light bg-light">
-      <div className="container-fluid">
-        <a
-          style={{ cursor: "pointer" }}
-          className="navbar-brand"
-          onClick={() => navigate(BASE)}
-        >
-          Blog App
-        </a>
+      <div className="container-fluid" style={{ marginTop: 8 }}>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <img src="../assets/favicon.png" alt="icon" width="35" height="35" onClick={() => navigate(BASE)} style={{ marginRight: 15, cursor: "pointer"  }} />
+          <a
+            style={{ cursor: "pointer" }}
+            className="navbar-brand"
+            onClick={() => navigate(BASE)}
+          >
+            Blog App
+          </a>
+        </div>
         <form className="d-flex input-group w-auto">
           <input
             type="search"
@@ -44,7 +47,7 @@ function PublicNavbar() {
           <button
             type="button"
             className="btn btn-primary me-3"
-            style={{ height: 35, borderRadius: 5 }}
+            style={{ height: 35, borderRadius: 5, marginLeft: 15 }}
             onClick={() => navigate(BASE + "login")}
           >
             Login
