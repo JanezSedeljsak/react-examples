@@ -9,9 +9,11 @@ import {
   ADD_POST_START,
   GET_POSTS_START,
   GET_POSTS_SUCCESS,
-  GET_POSTS_FAILURE
+  GET_POSTS_FAILURE,
 } from "../../actions/types";
 import "./modal.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddTodoModal() {
   const isModalVisible = useSelector((state) => state.post.todoModalVisible);
@@ -77,15 +79,39 @@ function AddTodoModal() {
           .get(API_BASE + "posts")
           .then(function (response) {
             dispatch({ type: GET_POSTS_SUCCESS, payload: response.data.posts });
-            console.log(response);
+            toast.success("Created post successfully!", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           })
           .catch((error) => {
-            alert("napaka");
+            toast("Error!", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
             dispatch({ type: GET_POSTS_FAILURE });
           });
       })
       .catch(function (error) {
-        alert("napaka");
+        toast.error("Error!!!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         dispatch({ type: ADD_POST_FAILURE });
         dispatch({ type: HIDE_POST_MODAL });
       });
@@ -97,7 +123,7 @@ function AddTodoModal() {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Modal title</h5>
+              <h5 className="modal-title">Create Post Modal</h5>
               <button
                 type="button"
                 className="btn-close"
@@ -133,12 +159,12 @@ function AddTodoModal() {
                 <button
                   type="button"
                   className="btn btn-primary me-3"
-                  style={{ height: 35, borderRadius: 5 }}
+                  style={{ height: 35, borderRadius: 5, marginBottom: 10 }}
                   onClick={uploadImage}
                 >
                   Upload image
                 </button>
-                <img src={image} style={{ width: "100%" }} />
+                <img src={image} style={{ width: "100%", borderRadius: 5 }} />
               </div>
             </div>
             <div className="modal-footer">
@@ -147,12 +173,13 @@ function AddTodoModal() {
                 className="btn btn-primary"
                 onClick={saveTodo}
               >
-                Save changes
+                Create blog
               </button>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

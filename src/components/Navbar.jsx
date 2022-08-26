@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BASE } from "../utils";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
   const location = useLocation();
@@ -54,7 +56,9 @@ function Navbar() {
                 <i className="fas fa-search"></i>
               </span>
             </>
-          ) : <></>}
+          ) : (
+            <></>
+          )}
 
           <button
             type="button"
@@ -68,7 +72,7 @@ function Navbar() {
             <button
               className="btn btn-primary dropdown-toggle"
               type="button"
-              style={{ height: 35, borderRadius: 5 }}
+              style={{ height: 35, borderRadius: 5}}
               id="dropdownExampleAnimation"
               data-mdb-toggle="dropdown"
               aria-expanded="false"
@@ -96,8 +100,22 @@ function Navbar() {
                   className="dropdown-item"
                   href="#"
                   onClick={() => {
+                    navigate(BASE + "dashboard");
+                  }}
+                >
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={() => {
                     dispatch({ type: USER_LOGOUT });
                     navigate(BASE);
+                    toast.success("Logged out!", {
+                      autoClose: 2000,
+                    });
                   }}
                 >
                   Logout
